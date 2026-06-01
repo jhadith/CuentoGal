@@ -1,9 +1,122 @@
-.colores{
-background-color: pink;
-
+/* 1. RESETEO TOTAL DE LA PANTALLA */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-body{
-    background-color: pink;
-   
+
+html, body {
+    height: 100vh; /* Alto exacto de la ventana visual */
+    width: 100vw;  /* Ancho exacto de la ventana visual */
+    overflow: hidden; /* ¡SÚPER IMPORTANTE! Prohíbe cualquier scroll de emergencia */
+}
+
+body {
+    background-image: url('/imagenes/back.png');
+    background-size: 100% 100%; /* Fuerza al fondo rosa a ocupar exactamente el 100% sin importar la resolución */
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    display: flex;
+    align-items: center;    /* Centra verticalmente la interfaz */
+    justify-content: center;  /* Centra horizontalmente la interfaz */
+    padding: 3vh 3vw; /* Márgenes dinámicos basados en la pantalla */
+}
+
+/* 2. ESTRUCTURA PRINCIPAL DEL CUENTO */
+main {
+    display: flex;
+    width: 100%;
+    height: 100%; /* Ocupa el 100% del body disponible (descontando el padding) */
+    gap: 25px;
+}
+
+main > section {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    gap: 25px;
+}
+
+/* 3. COLUMNA IZQUIERDA: PORTADA MINI */
+.divImg {
+    flex: 0 0 35%; /* Mantiene el 35% del ancho de la pantalla */
+    height: 100%;  /* Ocupa el alto máximo disponible */
+}
+
+.divImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* ¡CAMBIO CLAVE! Evita que se distorsione o se corte la portada, adaptándose al alto */
+    display: block;
+}
+
+/* 4. COLUMNA DERECHA: TEXTOS Y GRID */
+.divText {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    min-height: 0; /* Obliga a Flexbox a respetar los límites del padre y no desbordarse */
+}
+
+/* El título en Century Schoolbook */
+h1 {
+    font-family: "Century Schoolbook", "New Century Schoolbook", "Georgia", serif;
+    font-size: clamp(2rem, 4vw, 4.5rem); /* Tamaño fluido: no se romperá en pantallas pequeñas */
+    padding: 15px 20px;
   
+    background-color: rgba(255, 255, 255, 0.4); 
+    width: 100%;
+    text-align: left;
+}
+
+/* CONTENEDOR INFERIOR */
+.divTextContent {
+    display: flex;
+    flex: 1; 
+    gap: 20px;
+    height: 100%;
+    min-height: 0; /* Vital para que el contenido de adentro no empuje hacia abajo */
+}
+
+/* Cuadro de descripción */
+.divTextLeft {
+    flex: 0 0 50%; 
+    
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.4);
+    overflow-y: auto; /* Si escribes demasiada descripción, el scroll saldrá SOLO dentro de este cuadro */
+}
+
+.divTextLeft p {
+    font-family: "Century Schoolbook", "New Century Schoolbook", "Georgia", serif;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    color: #000;
+}
+
+/* Contenedor del Grid */
+.divTextRight {
+    flex: 0 0 50%; 
+    height: 100%;
+    min-height: 0; 
+}
+
+/* 5. CUADRÍCULA DE PERSONAJES AJUSTADA */
+.imageGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr; 
+    gap: 15px;
+    height: 100%; /* Forzamos a que mida exactamente lo mismo que el cuadro de descripción */
+}
+
+.imageGrid img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; /* Recorta los bordes de los personajes para que queden simétricos sin estirarse */
+   
+    display: block;
 }
