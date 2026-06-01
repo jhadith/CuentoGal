@@ -16,11 +16,11 @@ body {
     background-size: 100% 100%; /* Fuerza al fondo rosa a ocupar exactamente el 100% sin importar la resolución */
     background-position: center;
     background-repeat: no-repeat;
-    
+    margin: 10px 10px 10px 10px;
     display: flex;
     align-items: center;    /* Centra verticalmente la interfaz */
     justify-content: center;  /* Centra horizontalmente la interfaz */
-    padding: 3vh 3vw; /* Márgenes dinámicos basados en la pantalla */
+    
 }
 
 /* 2. ESTRUCTURA PRINCIPAL DEL CUENTO */
@@ -64,13 +64,15 @@ main > section {
 /* El título en Century Schoolbook */
 h1 {
     font-family: "Century Schoolbook", "New Century Schoolbook", "Georgia", serif;
-    font-size: clamp(2rem, 4vw, 4.5rem); /* Tamaño fluido: no se romperá en pantallas pequeñas */
-    padding: 15px 20px;
-  
+    font-size: 90px; /* Tamaño fluido: no se romperá en pantallas pequeñas */
     background-color: rgba(255, 255, 255, 0.4); 
     width: 100%;
     text-align: left;
+    color: rgb(255, 68, 164);
+    text-align: center;
 }
+
+
 
 /* CONTENEDOR INFERIOR */
 .divTextContent {
@@ -83,8 +85,7 @@ h1 {
 
 /* Cuadro de descripción */
 .divTextLeft {
-    flex: 0 0 50%; 
-    
+    flex: 0 0 50%;  
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.4);
     overflow-y: auto; /* Si escribes demasiada descripción, el scroll saldrá SOLO dentro de este cuadro */
@@ -109,14 +110,14 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr; 
-    gap: 15px;
-    height: 100%; /* Forzamos a que mida exactamente lo mismo que el cuadro de descripción */
+    gap: 10px;
+    height: 80%; /* Forzamos a que mida exactamente lo mismo que el cuadro de descripción */
+   
 }
 
 .imageGrid img {
-    width: 100%;
+    width: 80%;
     height: 100%; 
     object-fit: cover; /* Recorta los bordes de los personajes para que queden simétricos sin estirarse */
    
-    display: block;
 }
