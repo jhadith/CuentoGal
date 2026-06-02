@@ -39,9 +39,16 @@ main > section {
 }
 
 /* 3. COLUMNA IZQUIERDA: PORTADA MINI */
+
+.divImg:active{
+    transition: all 0.1s ease; /* Transición suave para el efecto de pulsación */
+    transform: scale(2); /* Efecto de pulsación al hacer clic */
+
+}
 .divImg {
     flex: 0 0 35%; /* Mantiene el 35% del ancho de la pantalla */
     height: 100%;  /* Ocupa el alto máximo disponible */
+
 }
 
 .divImg img {
