@@ -1,0 +1,454 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    font-family: "Century Schoolbook", Georgia, serif;
+    color: #4b2367;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.coverScene,
+.storyPage {
+    width: 100vw;
+    height: 100vh;
+}
+
+.coverBody,
+.storyBody {
+    background-image:
+        radial-gradient(circle at 12% 14%, rgba(255, 255, 255, 0.9) 0 3px, transparent 4px),
+        radial-gradient(circle at 82% 20%, rgba(255, 241, 143, 0.9) 0 4px, transparent 5px),
+        url('/imagenes/back.png');
+    background-size: 170px 170px, 230px 230px, 100% 100%;
+    background-repeat: repeat, repeat, no-repeat;
+    background-position: center;
+}
+
+.fullCover {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(158, 87, 196, 0.24));
+}
+
+.fullCover img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    display: block;
+    filter: drop-shadow(0 18px 22px rgba(60, 25, 100, 0.35));
+}
+
+.nextArrow,
+.storyNav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    border-radius: 0;
+    background: linear-gradient(135deg, #ff7cc4, #7b55df);
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 10px 20px rgba(77, 30, 120, 0.32);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nextArrow {
+    position: fixed;
+    right: 34px;
+    bottom: 34px;
+    width: 104px;
+    height: 104px;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.nextArrow img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 8px 8px rgba(73, 33, 105, 0.35));
+}
+
+.nextArrow:hover,
+.storyNav a:hover {
+    transform: scale(1.12);
+    box-shadow: 0 16px 26px rgba(77, 30, 120, 0.42);
+}
+
+.storyPage {
+    position: relative;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1800px;
+    background-image: url('/imagenes/fondoLibro.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.storyNav {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+.storyNav .pageArrow {
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    pointer-events: auto;
+    transition: transform 0.22s ease, filter 0.22s ease;
+}
+
+.storyNav .pageArrow img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 8px 8px rgba(73, 33, 105, 0.35));
+}
+
+.prevPage {
+    left: calc(6vw - 48px);
+}
+
+.nextPage {
+    right: calc(6vw - 48px);
+}
+
+.prevPage img {
+    transform: rotate(180deg);
+}
+
+.storyNav .pageArrow:hover {
+    transform: scale(1.1);
+    filter: brightness(1.12);
+    box-shadow: none;
+}
+
+.storyNav .pageArrow:active {
+    transform: scale(0.92);
+    box-shadow: none;
+}
+
+.storyNav:has(.nextPage:hover) ~ .bookSpread .rightLeaf {
+    transform: rotateY(-10deg);
+    filter: brightness(1.08);
+}
+
+.storyNav:has(.nextPage:hover) ~ .bookSpread .leftLeaf {
+    transform: rotateY(2deg);
+}
+
+.storyNav:has(.prevPage:hover) ~ .bookSpread .leftLeaf {
+    transform: rotateY(10deg);
+    filter: brightness(1.08);
+}
+
+.storyNav:has(.prevPage:hover) ~ .bookSpread .rightLeaf {
+    transform: rotateY(-2deg);
+}
+
+.storyNav:has(.nextPage:active) ~ .bookSpread .rightLeaf {
+    transform: rotateY(-155deg) skewY(-1deg);
+    filter: brightness(1.12);
+    box-shadow: -26px 18px 34px rgba(72, 31, 112, 0.18);
+}
+
+.storyNav:has(.nextPage:active) ~ .bookSpread .leftLeaf {
+    transform: rotateY(5deg);
+    filter: brightness(1.04);
+}
+
+.storyNav:has(.prevPage:active) ~ .bookSpread .leftLeaf {
+    transform: rotateY(155deg) skewY(1deg);
+    filter: brightness(1.12);
+    box-shadow: 26px 18px 34px rgba(72, 31, 112, 0.18);
+}
+
+.storyNav:has(.prevPage:active) ~ .bookSpread .rightLeaf {
+    transform: rotateY(-5deg);
+    filter: brightness(1.04);
+}
+
+.bookSpread {
+    width: 88vw;
+    height: 78vh;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    perspective: 1800px;
+    transform-style: preserve-3d;
+    animation: bookArrive 0.8s ease both;
+}
+
+.bookSpread::after {
+    content: "";
+    position: absolute;
+    top: 3%;
+    bottom: 3%;
+    left: 50%;
+    width: 2px;
+    z-index: 5;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.18), rgba(112, 62, 139, 0.12), transparent);
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.18);
+    pointer-events: none;
+}
+
+.bookLeaf {
+    position: relative;
+    min-width: 0;
+    padding: 54px 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 5%;
+    background:
+        linear-gradient(115deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02) 45%, rgba(255, 236, 249, 0.05)),
+        rgba(255, 255, 255, 0.05);
+    box-shadow:
+        inset 0 0 24px rgba(255, 255, 255, 0.08),
+        inset 18px 0 28px rgba(255, 255, 255, 0.04),
+        0 18px 34px rgba(72, 31, 112, 0.12);
+    backdrop-filter: blur(2px) saturate(1.15);
+    overflow: hidden;
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+    transition: transform 0.85s ease-in-out, filter 0.85s ease-in-out, box-shadow 0.85s ease-in-out;
+}
+
+.leftLeaf {
+    transform-origin: right center;
+    border-right: 0;
+}
+
+.rightLeaf {
+    transform-origin: left center;
+    border-left: 0;
+}
+
+.bookLeaf::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.05) 24%, transparent 48%),
+        radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.05), transparent 30%),
+        radial-gradient(circle at 82% 78%, rgba(255, 219, 249, 0.04), transparent 34%);
+    pointer-events: none;
+}
+
+.leftLeaf::after,
+.rightLeaf::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 28px;
+    pointer-events: none;
+}
+
+.leftLeaf::after {
+    right: 0;
+    background: linear-gradient(90deg, transparent, rgba(76, 39, 112, 0.06));
+}
+
+.rightLeaf::after {
+    left: 0;
+    background: linear-gradient(90deg, rgba(76, 39, 112, 0.06), transparent);
+}
+
+.rightLeaf::before {
+    animation: leafShimmer 4s ease-in-out infinite;
+}
+
+.leftLeaf::before {
+    animation: leafShimmer 4s ease-in-out infinite reverse;
+}
+
+.rightLeaf .storyText,
+.leftLeaf .storyText,
+.bookLeaf > img {
+    position: relative;
+    z-index: 2;
+}
+
+.turnGhost {
+    display: none;
+}
+
+.bookLeaf .turnBack {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.05);
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    pointer-events: none;
+}
+
+.reversePage {
+    grid-template-columns: 0.9fr 1.1fr;
+}
+
+.storyText {
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 20px;
+}
+
+.storyText h1 {
+    font-size: clamp(2.4rem, 5.2vw, 5rem);
+    line-height: 1.05;
+    color: #7939bd;
+    text-shadow: 0 2px 0 rgba(255, 255, 255, 0.72), 0 0 14px rgba(255, 216, 82, 0.55);
+}
+
+.storyText p {
+    font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+    line-height: 1.55;
+    color: #3d2454;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.bookLeaf img {
+    width: 100%;
+    height: 100%;
+    max-height: 76vh;
+    object-fit: contain;
+    filter: drop-shadow(0 18px 20px rgba(70, 29, 107, 0.32));
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+}
+
+@keyframes bookArrive {
+    0% {
+        opacity: 0.35;
+        transform: rotateX(4deg) scale(0.96);
+        filter: brightness(1.12);
+    }
+
+    55% {
+        opacity: 0.92;
+        transform: rotateX(-1deg) scale(1.01);
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotateX(0deg) scale(1);
+        filter: brightness(1);
+    }
+}
+
+@keyframes leafShimmer {
+    0%,
+    100% {
+        opacity: 0.65;
+        transform: translateX(-10%);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateX(10%);
+    }
+}
+
+@media (max-width: 780px) {
+    body {
+        overflow: auto;
+    }
+
+    .storyPage {
+        height: auto;
+        min-height: 100vh;
+        padding: 0;
+    }
+
+    .bookSpread,
+    .reversePage {
+        width: 90vw;
+        height: auto;
+        min-height: 100vh;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .bookLeaf {
+        min-height: 48vh;
+        padding: 82px 28px 34px;
+    }
+
+    .leftLeaf,
+    .rightLeaf {
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        transform-origin: center center;
+    }
+
+    .bookSpread::after {
+        display: none;
+    }
+
+    .nextArrow {
+        right: 20px;
+        bottom: 20px;
+        width: 78px;
+        height: 78px;
+    }
+
+    .storyNav {
+        top: 50%;
+        left: 0;
+        right: 0;
+    }
+
+    .storyNav .pageArrow {
+        width: 70px;
+        height: 70px;
+    }
+
+    .prevPage {
+        left: calc(5vw - 35px);
+    }
+
+    .nextPage {
+        right: calc(5vw - 35px);
+    }
+}

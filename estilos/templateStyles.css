@@ -1,130 +1,290 @@
-/* 1. RESETEO TOTAL DE LA PANTALLA */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-html, body {
-    height: 100vh; /* Alto exacto de la ventana visual */
-    width: 100vw;  /* Ancho exacto de la ventana visual */
-    overflow: hidden; /* ¡SÚPER IMPORTANTE! Prohíbe cualquier scroll de emergencia */
+html,
+body {
+    width: 100%;
+    min-height: 100%;
 }
 
 body {
-    background-image: url('/imagenes/back.png');
-    background-size: 100% 100%; /* Fuerza al fondo rosa a ocupar exactamente el 100% sin importar la resolución */
+    min-height: 100vh;
+    background-image:
+        radial-gradient(circle at 12% 12%, rgba(255, 255, 255, 0.9) 0 3px, transparent 4px),
+        radial-gradient(circle at 85% 18%, rgba(255, 244, 161, 0.9) 0 4px, transparent 5px),
+        radial-gradient(circle at 25% 85%, rgba(255, 255, 255, 0.85) 0 3px, transparent 4px),
+        url('/imagenes/back.png');
+    background-size: 160px 160px, 220px 220px, 180px 180px, 100% 100%;
     background-position: center;
-    background-repeat: no-repeat;
-    margin: 10px 10px 10px 10px;
+    background-repeat: repeat, repeat, repeat, no-repeat;
+    font-family: "Century Schoolbook", Georgia, serif;
     display: flex;
-    align-items: center;    /* Centra verticalmente la interfaz */
-    justify-content: center;  /* Centra horizontalmente la interfaz */
-    
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    color: #4f2468;
 }
 
-/* 2. ESTRUCTURA PRINCIPAL DEL CUENTO */
 main {
+    width: min(1220px, 100%);
+    min-height: calc(100vh - 36px);
     display: flex;
-    width: 100%;
-    height: 100%; /* Ocupa el 100% del body disponible (descontando el padding) */
-    gap: 25px;
 }
 
-main > section {
+.introSection {
+    width: 100%;
     display: flex;
-    width: 100%;
-    height: 100%;
-    gap: 25px;
+    align-items: stretch;
+    gap: 28px;
 }
 
-/* 3. COLUMNA IZQUIERDA: PORTADA MINI */
-
-.divImg:active{
-    transition: all 0.1s ease; /* Transición suave para el efecto de pulsación */
-    transform: scale(2); /* Efecto de pulsación al hacer clic */
-
-}
 .divImg {
-    flex: 0 0 35%; /* Mantiene el 35% del ancho de la pantalla */
-    height: 100%;  /* Ocupa el alto máximo disponible */
-
+    flex: 0 0 34%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    box-shadow: none;
 }
 
-.divImg img {
+.bookLink {
+    width: min(100%, 410px);
+    height: min(88vh, 650px);
+    position: relative;
+    display: block;
+    text-decoration: none;
+    transform-style: preserve-3d;
+    animation: bookFloat 3.6s ease-in-out infinite;
+    transition: transform 0.35s ease, filter 0.35s ease;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.bookLink::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 0%, transparent 38%, rgba(255, 255, 255, 0.65) 48%, transparent 58%, transparent 100%);
+    opacity: 0;
+    transform: translateX(-35%);
+    transition: opacity 0.25s ease, transform 0.55s ease;
+    pointer-events: none;
+}
+
+.bookLink img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* ¡CAMBIO CLAVE! Evita que se distorsione o se corte la portada, adaptándose al alto */
+    object-fit: contain;
     display: block;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    box-shadow: none;
+    filter: drop-shadow(0 22px 18px rgba(64, 24, 88, 0.38));
+    transform-origin: left center;
+    transition: transform 0.45s ease, filter 0.45s ease;
 }
 
-/* 4. COLUMNA DERECHA: TEXTOS Y GRID */
+.bookLink:focus,
+.bookLink:focus-visible,
+.bookLink:active {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.bookLink span {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    padding: 10px 18px;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ff73bd, #8b5cf6);
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 0;
+    box-shadow: 0 8px 18px rgba(89, 38, 133, 0.35);
+}
+
+.bookLink:hover {
+    animation-play-state: paused;
+    transform: translateY(-28px) scale(1.04) rotateX(8deg) rotateZ(-2deg);
+    filter: saturate(1.14);
+}
+
+.bookLink:hover img {
+    transform: rotateY(-8deg);
+    filter: drop-shadow(0 34px 24px rgba(64, 24, 88, 0.45));
+}
+
+.bookLink:hover::after {
+    opacity: 1;
+    transform: translateX(35%);
+}
+
 .divText {
-    flex: 1; 
+    flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    height: 100%;
-    min-height: 0; /* Obliga a Flexbox a respetar los límites del padre y no desbordarse */
-}
-
-/* El título en Century Schoolbook */
-h1 {
-    font-family: "Century Schoolbook", "New Century Schoolbook", "Georgia", serif;
-    font-size: 90px; /* Tamaño fluido: no se romperá en pantallas pequeñas */
-    background-color: rgba(255, 255, 255, 0.4); 
-    width: 100%;
-    text-align: left;
-    color: rgb(255, 68, 164);
-    text-align: center;
+    gap: 18px;
 }
 
 
 
-/* CONTENEDOR INFERIOR */
 .divTextContent {
+    flex: 1;
+    min-height: 0;
     display: flex;
-    flex: 1; 
-    gap: 20px;
-    height: 100%;
-    min-height: 0; /* Vital para que el contenido de adentro no empuje hacia abajo */
+    gap: 18px;
 }
 
-/* Cuadro de descripción */
+.divTextLeft,
+.divTextRight {
+   
+    
+   
+    box-shadow: 0 18px 28px rgba(83, 32, 110, 0.18);
+}
+
 .divTextLeft {
-    flex: 0 0 50%;  
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.4);
-    overflow-y: auto; /* Si escribes demasiada descripción, el scroll saldrá SOLO dentro de este cuadro */
+    flex: 0 0 45%;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+}
+
+.divTextLeft h2,
+.charactersTitle {
+    color: #7f3bc7;
+    font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+    text-align: center;
+    text-shadow: 0 2px 0 rgba(255, 255, 255, 0.75);
 }
 
 .divTextLeft p {
-    font-family: "Century Schoolbook", "New Century Schoolbook", "Georgia", serif;
-    font-size: 1.15rem;
-    line-height: 1.5;
-    color: #000;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    line-height: 1.55;
+    color: #3e2258;
+    text-align: center;
 }
 
-/* Contenedor del Grid */
+.hint {
+    padding: 10px 12px;
+    
+    background: rgba(255, 214, 237, 0.8);
+    font-weight: bold;
+}
+
 .divTextRight {
-    flex: 0 0 50%; 
-    height: 100%;
-    min-height: 0; 
+    flex: 1;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
-/* 5. CUADRÍCULA DE PERSONAJES AJUSTADA */
 .imageGrid {
+    flex: 1;
+    min-height: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr; 
-    gap: 10px;
-    height: 80%; /* Forzamos a que mida exactamente lo mismo que el cuadro de descripción */
-   
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.imageGrid figure {
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.imageGrid figure:hover {
+    transform: translateY(-7px) scale(1.03);
+    box-shadow: 0 14px 20px rgba(242, 37, 112, 0.366);
 }
 
 .imageGrid img {
-    width: 80%;
-    height: 100%; 
-    object-fit: cover; /* Recorta los bordes de los personajes para que queden simétricos sin estirarse */
-   
+    width: 100%;
+    min-height: 0;
+    height: calc(100% - 38px);
+    object-fit: contain;
+    padding: 8px 8px 0;
+}
+
+figcaption {
+    width: 100%;
+    min-height: 38px;
+    padding: 8px 5px;
+    background: rgba(138, 77, 196, 0.88);
+    color: #fff;
+    font-size: clamp(0.82rem, 1.4vw, 1rem);
+    font-weight: bold;
+    text-align: center;
+}
+
+@keyframes goldenGlow {
+    0%,
+    100% {
+        text-shadow: 0 2px 0 #9d5b00, 0 0 12px rgba(255, 255, 255, 0.95), 0 0 22px rgba(255, 224, 91, 0.8);
+    }
+
+    50% {
+        text-shadow: 0 2px 0 #9d5b00, 0 0 20px rgba(255, 255, 255, 1), 0 0 38px rgba(255, 224, 91, 1);
+    }
+}
+
+@keyframes bookFloat {
+    0%,
+    100% {
+        transform: translateY(0) rotateZ(-1deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotateZ(1deg);
+    }
+}
+
+@media (max-width: 850px) {
+    body {
+        overflow: auto;
+    }
+
+    main {
+        min-height: auto;
+    }
+
+    .introSection,
+    .divTextContent {
+        flex-direction: column;
+    }
+
+    .divImg,
+    .divTextLeft {
+        flex-basis: auto;
+    }
+
+    .bookLink {
+        height: 58vh;
+    }
+
+    .imageGrid {
+        min-height: 560px;
+    }
 }
