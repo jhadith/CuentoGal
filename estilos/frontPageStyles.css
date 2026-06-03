@@ -13,7 +13,15 @@ body {
 body {
     overflow: hidden;
     font-family: "Century Schoolbook", Georgia, serif;
-    color: #4b2367;
+    color: #3d2454;
+}
+
+.audioPlayer {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 100;
+    width: 260px;
 }
 
 a {
@@ -27,25 +35,14 @@ a {
     height: 100vh;
 }
 
-.coverBody,
-.storyBody {
-    background-image:
-        radial-gradient(circle at 12% 14%, rgba(255, 255, 255, 0.9) 0 3px, transparent 4px),
-        radial-gradient(circle at 82% 20%, rgba(255, 241, 143, 0.9) 0 4px, transparent 5px),
-        url('/imagenes/back.png');
-    background-size: 170px 170px, 230px 230px, 100% 100%;
-    background-repeat: repeat, repeat, no-repeat;
-    background-position: center;
+.coverBody {
+    background: #f8d9ec;
 }
 
 .fullCover {
     width: 100%;
     height: 100%;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(158, 87, 196, 0.24));
 }
 
 .fullCover img {
@@ -53,167 +50,92 @@ a {
     height: 100%;
     object-fit: fill;
     display: block;
-    filter: drop-shadow(0 18px 22px rgba(60, 25, 100, 0.35));
+}
+
+.homeButton {
+    position: absolute;
+    top: 24px;
+    left: 10%;
+    z-index: 3;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    background: rgba(86, 110, 242, 0.88);
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 10px 18px rgba(83, 32, 110, 0.22);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.homeButton:hover {
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 14px 22px rgba(83, 32, 110, 0.32);
 }
 
 .nextArrow,
-.storyNav a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid rgba(255, 255, 255, 0.9);
-    border-radius: 0;
-    background: linear-gradient(135deg, #ff7cc4, #7b55df);
-    color: #fff;
-    font-weight: bold;
-    box-shadow: 0 10px 20px rgba(77, 30, 120, 0.32);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+.pageArrow {
+    width: 96px;
+    height: 96px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    filter: drop-shadow(0 8px 8px rgba(73, 33, 105, 0.35));
+    transition: transform 0.22s ease, filter 0.22s ease;
 }
 
 .nextArrow {
     position: fixed;
     right: 34px;
     bottom: 34px;
-    width: 104px;
-    height: 104px;
-    border: 0;
-    background: transparent;
-    box-shadow: none;
 }
 
-.nextArrow img {
+.nextArrow img,
+.pageArrow img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     display: block;
-    filter: drop-shadow(0 8px 8px rgba(73, 33, 105, 0.35));
 }
 
 .nextArrow:hover,
-.storyNav a:hover {
-    transform: scale(1.12);
-    box-shadow: 0 16px 26px rgba(77, 30, 120, 0.42);
+.pageArrow:hover {
+    transform: scale(1.1);
+    filter: brightness(1.12) drop-shadow(0 10px 10px rgba(73, 33, 105, 0.35));
+}
+
+.storyBody {
+    background: #f8d9ec;
 }
 
 .storyPage {
     position: relative;
-    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    perspective: 1800px;
+    overflow: hidden;
+    perspective: 1900px;
     background-image: url('/imagenes/fondoLibro.png');
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
-    overflow: hidden;
 }
 
-.storyNav {
-    position: fixed;
-    top: 50%;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    transform: translateY(-50%);
-}
-
-.storyNav .pageArrow {
+.pageState {
     position: absolute;
-    width: 96px;
-    height: 96px;
-    border: 0;
-    background: transparent;
-    box-shadow: none;
-    pointer-events: auto;
-    transition: transform 0.22s ease, filter 0.22s ease;
-}
-
-.storyNav .pageArrow img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    filter: drop-shadow(0 8px 8px rgba(73, 33, 105, 0.35));
-}
-
-.prevPage {
-    left: calc(6vw - 48px);
-}
-
-.nextPage {
-    right: calc(6vw - 48px);
-}
-
-.prevPage img {
-    transform: rotate(180deg);
-}
-
-.storyNav .pageArrow:hover {
-    transform: scale(1.1);
-    filter: brightness(1.12);
-    box-shadow: none;
-}
-
-.storyNav .pageArrow:active {
-    transform: scale(0.92);
-    box-shadow: none;
-}
-
-.storyNav:has(.nextPage:hover) ~ .bookSpread .rightLeaf {
-    transform: rotateY(-10deg);
-    filter: brightness(1.08);
-}
-
-.storyNav:has(.nextPage:hover) ~ .bookSpread .leftLeaf {
-    transform: rotateY(2deg);
-}
-
-.storyNav:has(.prevPage:hover) ~ .bookSpread .leftLeaf {
-    transform: rotateY(10deg);
-    filter: brightness(1.08);
-}
-
-.storyNav:has(.prevPage:hover) ~ .bookSpread .rightLeaf {
-    transform: rotateY(-2deg);
-}
-
-.storyNav:has(.nextPage:active) ~ .bookSpread .rightLeaf {
-    transform: rotateY(-155deg) skewY(-1deg);
-    filter: brightness(1.12);
-    box-shadow: -26px 18px 34px rgba(72, 31, 112, 0.18);
-}
-
-.storyNav:has(.nextPage:active) ~ .bookSpread .leftLeaf {
-    transform: rotateY(5deg);
-    filter: brightness(1.04);
-}
-
-.storyNav:has(.prevPage:active) ~ .bookSpread .leftLeaf {
-    transform: rotateY(155deg) skewY(1deg);
-    filter: brightness(1.12);
-    box-shadow: 26px 18px 34px rgba(72, 31, 112, 0.18);
-}
-
-.storyNav:has(.prevPage:active) ~ .bookSpread .rightLeaf {
-    transform: rotateY(-5deg);
-    filter: brightness(1.04);
+    opacity: 0;
+    pointer-events: none;
 }
 
 .bookSpread {
     width: 88vw;
     height: 78vh;
-    position: relative;
-    z-index: 2;
+    position: absolute;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    perspective: 1800px;
+    perspective: 1900px;
     transform-style: preserve-3d;
-    animation: bookArrive 0.8s ease both;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
 }
 
 .bookSpread::after {
@@ -223,9 +145,8 @@ a {
     bottom: 3%;
     left: 50%;
     width: 2px;
-    z-index: 5;
+    z-index: 8;
     background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.18), rgba(112, 62, 139, 0.12), transparent);
-    box-shadow: 0 0 16px rgba(255, 255, 255, 0.18);
     pointer-events: none;
 }
 
@@ -236,6 +157,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.28);
     border-radius: 5%;
     background:
@@ -243,35 +165,31 @@ a {
         rgba(255, 255, 255, 0.05);
     box-shadow:
         inset 0 0 24px rgba(255, 255, 255, 0.08),
-        inset 18px 0 28px rgba(255, 255, 255, 0.04),
         0 18px 34px rgba(72, 31, 112, 0.12);
     backdrop-filter: blur(2px) saturate(1.15);
-    overflow: hidden;
     transform-style: preserve-3d;
-    backface-visibility: visible;
     transition: transform 0.85s ease-in-out, filter 0.85s ease-in-out, box-shadow 0.85s ease-in-out;
-}
-
-.leftLeaf {
-    transform-origin: right center;
-    border-right: 0;
-}
-
-.rightLeaf {
-    transform-origin: left center;
-    border-left: 0;
 }
 
 .bookLeaf::before {
     content: "";
     position: absolute;
     inset: 0;
-    z-index: -1;
     background:
         linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.05) 24%, transparent 48%),
-        radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.05), transparent 30%),
-        radial-gradient(circle at 82% 78%, rgba(255, 219, 249, 0.04), transparent 34%);
+        radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.05), transparent 30%);
     pointer-events: none;
+    animation: leafShimmer 4s ease-in-out infinite;
+}
+
+.leftLeaf {
+    border-right: 0;
+    transform-origin: right center;
+}
+
+.rightLeaf {
+    border-left: 0;
+    transform-origin: left center;
 }
 
 .leftLeaf::after,
@@ -294,36 +212,10 @@ a {
     background: linear-gradient(90deg, rgba(76, 39, 112, 0.06), transparent);
 }
 
-.rightLeaf::before {
-    animation: leafShimmer 4s ease-in-out infinite;
-}
-
-.leftLeaf::before {
-    animation: leafShimmer 4s ease-in-out infinite reverse;
-}
-
-.rightLeaf .storyText,
-.leftLeaf .storyText,
+.storyText,
 .bookLeaf > img {
     position: relative;
     z-index: 2;
-}
-
-.turnGhost {
-    display: none;
-}
-
-.bookLeaf .turnBack {
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.05);
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
-    pointer-events: none;
-}
-
-.reversePage {
-    grid-template-columns: 0.9fr 1.1fr;
 }
 
 .storyText {
@@ -331,21 +223,19 @@ a {
     display: flex;
     flex-direction: column;
     gap: 22px;
-    padding: 20px;
 }
 
 .storyText h1 {
-    font-size: clamp(2.4rem, 5.2vw, 5rem);
+    font-size: 40px;
     line-height: 1.05;
-    color: #7939bd;
+    color: #332300;
     text-shadow: 0 2px 0 rgba(255, 255, 255, 0.72), 0 0 14px rgba(255, 216, 82, 0.55);
 }
 
 .storyText p {
-    font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+    font-size: 18px;
     line-height: 1.55;
-    color: #3d2454;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+    
 }
 
 .bookLeaf img {
@@ -353,10 +243,143 @@ a {
     height: 100%;
     max-height: 76vh;
     object-fit: contain;
-    filter: drop-shadow(0 18px 20px rgba(70, 29, 107, 0.32));
     border: 0;
-    border-radius: 0;
     background: transparent;
+    filter: drop-shadow(0 18px 20px rgba(70, 29, 107, 0.32));
+}
+
+.storyNav {
+    position: fixed;
+    inset: 50% 0 auto 0;
+    z-index: 20;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+.pageArrow {
+    position: absolute;
+    display: none;
+    pointer-events: auto;
+}
+
+.prevPage {
+    left: calc(6vw - 48px);
+}
+
+.nextPage {
+    right: calc(6vw - 48px);
+}
+
+.prevPage img {
+    transform: rotate(180deg);
+}
+
+#spread1:checked ~ .spreadOne,
+#spread2:checked ~ .spreadTwo,
+#spread3:checked ~ .spreadThree,
+#spread4:checked ~ .spreadFour,
+#spread5:checked ~ .spreadFive,
+#spread6:checked ~ .spreadSix {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 5;
+}
+
+#spread1:checked ~ .storyNav .controlOne,
+#spread2:checked ~ .storyNav .controlTwo,
+#spread3:checked ~ .storyNav .controlThree,
+#spread4:checked ~ .storyNav .controlFour,
+#spread5:checked ~ .storyNav .controlFive,
+#spread6:checked ~ .storyNav .controlSix {
+    display: block;
+}
+
+#spread1:checked ~ .spreadOne,
+#spread2:checked ~ .spreadTwo,
+#spread3:checked ~ .spreadThree,
+#spread4:checked ~ .spreadFour,
+#spread5:checked ~ .spreadFive,
+#spread6:checked ~ .spreadSix {
+    animation: bookArrive 0.7s ease both;
+}
+
+#spread2:checked ~ .spreadOne .rightLeaf,
+#spread3:checked ~ .spreadTwo .rightLeaf,
+#spread4:checked ~ .spreadThree .rightLeaf,
+#spread5:checked ~ .spreadFour .rightLeaf,
+#spread6:checked ~ .spreadFive .rightLeaf {
+    transform: rotateY(-158deg) skewY(-1deg);
+    filter: brightness(1.12);
+    box-shadow: -26px 18px 34px rgba(72, 31, 112, 0.18);
+}
+
+#spread1:checked ~ .spreadTwo .leftLeaf,
+#spread2:checked ~ .spreadThree .leftLeaf,
+#spread3:checked ~ .spreadFour .leftLeaf,
+#spread4:checked ~ .spreadFive .leftLeaf,
+#spread5:checked ~ .spreadSix .leftLeaf {
+    transform: rotateY(158deg) skewY(1deg);
+    filter: brightness(1.12);
+    box-shadow: 26px 18px 34px rgba(72, 31, 112, 0.18);
+}
+
+.storyPage:has(.controlOne.nextPage:hover) .spreadOne .rightLeaf,
+.storyPage:has(.controlTwo.nextPage:hover) .spreadTwo .rightLeaf,
+.storyPage:has(.controlThree.nextPage:hover) .spreadThree .rightLeaf,
+.storyPage:has(.controlFour.nextPage:hover) .spreadFour .rightLeaf,
+.storyPage:has(.controlFive.nextPage:hover) .spreadFive .rightLeaf {
+    transform: rotateY(-10deg);
+    filter: brightness(1.08);
+}
+
+.storyPage:has(.controlTwo.prevPage:hover) .spreadTwo .leftLeaf,
+.storyPage:has(.controlThree.prevPage:hover) .spreadThree .leftLeaf,
+.storyPage:has(.controlFour.prevPage:hover) .spreadFour .leftLeaf,
+.storyPage:has(.controlFive.prevPage:hover) .spreadFive .leftLeaf,
+.storyPage:has(.controlSix.prevPage:hover) .spreadSix .leftLeaf {
+    transform: rotateY(10deg);
+    filter: brightness(1.08);
+}
+
+.storyNav .pageArrow:active {
+    transform: scale(0.94);
+}
+
+#spread2:checked ~ .spreadOne,
+#spread3:checked ~ .spreadTwo,
+#spread4:checked ~ .spreadThree,
+#spread5:checked ~ .spreadFour,
+#spread6:checked ~ .spreadFive {
+    opacity: 1;
+    pointer-events: none;
+    z-index: 6;
+    animation: oldSpreadFade 0.9s ease forwards;
+}
+
+#spread2:checked ~ .spreadOne .leftLeaf,
+#spread3:checked ~ .spreadTwo .leftLeaf,
+#spread4:checked ~ .spreadThree .leftLeaf,
+#spread5:checked ~ .spreadFour .leftLeaf,
+#spread6:checked ~ .spreadFive .leftLeaf {
+    opacity: 0;
+}
+
+.storyPage:has(.controlOne.nextPage:active) .spreadOne .rightLeaf,
+.storyPage:has(.controlTwo.nextPage:active) .spreadTwo .rightLeaf,
+.storyPage:has(.controlThree.nextPage:active) .spreadThree .rightLeaf,
+.storyPage:has(.controlFour.nextPage:active) .spreadFour .rightLeaf,
+.storyPage:has(.controlFive.nextPage:active) .spreadFive .rightLeaf {
+    transform: rotateY(-158deg) skewY(-1deg);
+    filter: brightness(1.12);
+}
+
+.storyPage:has(.controlTwo.prevPage:active) .spreadTwo .leftLeaf,
+.storyPage:has(.controlThree.prevPage:active) .spreadThree .leftLeaf,
+.storyPage:has(.controlFour.prevPage:active) .spreadFour .leftLeaf,
+.storyPage:has(.controlFive.prevPage:active) .spreadFive .leftLeaf,
+.storyPage:has(.controlSix.prevPage:active) .spreadSix .leftLeaf {
+    transform: rotateY(158deg) skewY(1deg);
+    filter: brightness(1.12);
 }
 
 @keyframes bookArrive {
@@ -366,11 +389,6 @@ a {
         filter: brightness(1.12);
     }
 
-    55% {
-        opacity: 0.92;
-        transform: rotateX(-1deg) scale(1.01);
-    }
-
     100% {
         opacity: 1;
         transform: rotateX(0deg) scale(1);
@@ -378,16 +396,27 @@ a {
     }
 }
 
+@keyframes oldSpreadFade {
+    0%,
+    72% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
 @keyframes leafShimmer {
     0%,
     100% {
-        opacity: 0.65;
-        transform: translateX(-10%);
+        opacity: 0.55;
+        transform: translateX(-8%);
     }
 
     50% {
         opacity: 1;
-        transform: translateX(10%);
+        transform: translateX(8%);
     }
 }
 
@@ -402,8 +431,7 @@ a {
         padding: 0;
     }
 
-    .bookSpread,
-    .reversePage {
+    .bookSpread {
         width: 90vw;
         height: auto;
         min-height: 100vh;
@@ -414,10 +442,6 @@ a {
     .bookLeaf {
         min-height: 48vh;
         padding: 82px 28px 34px;
-    }
-
-    .leftLeaf,
-    .rightLeaf {
         border: 1px solid rgba(255, 255, 255, 0.28);
         transform-origin: center center;
     }
@@ -426,29 +450,22 @@ a {
         display: none;
     }
 
+    .nextArrow,
+    .pageArrow {
+        width: 72px;
+        height: 72px;
+    }
+
     .nextArrow {
         right: 20px;
         bottom: 20px;
-        width: 78px;
-        height: 78px;
-    }
-
-    .storyNav {
-        top: 50%;
-        left: 0;
-        right: 0;
-    }
-
-    .storyNav .pageArrow {
-        width: 70px;
-        height: 70px;
     }
 
     .prevPage {
-        left: calc(5vw - 35px);
+        left: calc(5vw - 36px);
     }
 
     .nextPage {
-        right: calc(5vw - 35px);
+        right: calc(5vw - 36px);
     }
 }

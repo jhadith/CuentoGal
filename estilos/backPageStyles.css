@@ -1,0 +1,142 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.audioPlayer {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 100;
+    width: 260px;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.backCover {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    display: block;
+}
+
+.homeButton {
+    position: absolute;
+    top: 24px;
+    left: 10%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    background: rgba(247, 159, 190, 0.88);
+    color: #fff;
+    font-family: "Century Schoolbook", Georgia, serif;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 10px 18px rgba(83, 32, 110, 0.22);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    z-index: 3;
+}
+
+.homeButton:hover {
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 14px 22px rgba(83, 32, 110, 0.32);
+}
+
+.suggestionsPanel {
+    position: absolute;
+    top: 50%;
+    width: 33%;
+    height: 76%;
+    padding: 26px 24px;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 18px 28px rgba(83, 32, 110, 0.18);
+    backdrop-filter: blur(3px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.leftPanel {
+    left: 4%;
+}
+
+.rightPanel {
+    right: 4%;
+}
+
+.suggestionsPanel h1 {
+    color: #ff6dc4;
+    font-family: "Century Schoolbook", Georgia, serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    text-align: center;
+    text-shadow: 0 2px 0 rgba(255, 214, 49, 0.75);
+}
+
+.suggestionGrid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.suggestionGrid article {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.suggestionGrid article:hover {
+    transform: translateY(-7px) scale(1.03);
+    box-shadow: 0 14px 20px rgba(242, 37, 112, 0.36);
+}
+
+.suggestionGrid img {
+    width: 100%;
+    height: calc(100% - 38px);
+    flex: 1;
+    min-height: 0;
+    object-fit: cover;
+    display: block;
+}
+
+.suggestionGrid h2 {
+    min-height: 38px;
+    padding: 8px 5px;
+    background: rgba(245, 100, 165, 0.88);
+    color: #fff;
+    font-family: "Century Schoolbook", Georgia, serif;
+    font-size: clamp(0.82rem, 1.3vw, 1rem);
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .suggestionsPanel {
+        width: 42%;
+        height: 70%;
+        padding: 18px 14px;
+    }
+
+    .leftPanel {
+        left: 2%;
+    }
+
+    .rightPanel {
+        right: 2%;
+    }
+}

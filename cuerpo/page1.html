@@ -3,40 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Little Pony - Pagina 1</title>
+    <title>My Little Pony</title>
     <link rel="stylesheet" href="/estilos/frontPageStyles.css">
 </head>
 <body class="storyBody">
+    <audio class="audioPlayer" src="/audio/musicaMlp.mp3" controls loop></audio>
     <main class="storyPage">
-        <nav class="storyNav">
-            <a class="pageArrow prevPage" href="/cuerpo/front_page.html" aria-label="Volver a portada">
-                <img src="/imagenes/flecha.png" alt="">
-            </a>
-            <a class="pageArrow nextPage" href="/cuerpo/page2.html" aria-label="Siguiente pagina">
-                <img src="/imagenes/flecha.png" alt="">
-            </a>
-        </nav>
+        <input class="pageState" type="radio" name="page" id="spread1" checked>
+        <input class="pageState" type="radio" name="page" id="spread2">
+        <input class="pageState" type="radio" name="page" id="spread3">
+        <input class="pageState" type="radio" name="page" id="spread4">
+        <input class="pageState" type="radio" name="page" id="spread5">
+        <input class="pageState" type="radio" name="page" id="spread6">
 
-        <section class="bookSpread">
-            <div class="bookLeaf leftLeaf">
+        <section class="bookSpread spreadOne">
+            <article class="bookLeaf leftLeaf">
                 <div class="storyText">
                     <h1>El brillo en la biblioteca</h1>
                     <p>
-                        En una noche tranquila de Equestria, Twilight Sparkle encontro un libro
-                        cubierto de polvo dorado. Al abrirlo, pequenas estrellas saltaron de sus
-                        paginas y comenzaron a girar por toda la habitacion.
+                      La mañana en el castillo de Twilight Sparkle avanzaba con perfecta tranquilidad.
+                       Tras ordenar minuciosamente la sección de hechizos antiguos y enviar los reportes
+                        reales a Canterlot, a Spike le rugió el estómago con tanta fuerza que ambos soltaron
+                         una carcajada. El pequeño dragón sugirió que ya era hora de colgar los pergaminos 
+                         por un momento y buscar algo de comer. Twilight, contagiada por el entusiasmo de 
+                         su amigo, guardó los mapas y aceptó de inmediato. "¡Vamos a Sweet Apple Acres!", 
+                         exclamó la alicornio con una sonrisa,
+                       "apuesto a que Applejack tiene listos unos deliciosos buñuelos de manzana". 
+                       Sin perder un segundo, ambos salieron trotando alegremente bajo el cálido sol de Ponyville.
                     </p>
-                    <p>
-                        Spike, sorprendido, miro hacia la ventana. En el cielo, la luna parecia
-                        esconder una sombra misteriosa.
-                    </p>
+                   
                 </div>
-            </div>
+            </article>
 
-            <div class="bookLeaf rightLeaf">
-                <img src="/imagenes/spike2.png" alt="Spike sorprendido en la aventura">
-            </div>
+            <article class="bookLeaf rightLeaf">
+                <img src="/imagenes/spike3.png" alt="Spike sorprendido en la aventura">
+            </article>
         </section>
+
+        <section class="bookSpread spreadTwo">
+            <article class="bookLeaf leftLeaf">
+                <img src="/imagenes/applejack.png" alt="Princesa Luna mirando la noche">
+            </article>
+
+            <article class="bookLeaf rightLeaf">
+                <div class="storyText">
+                    <h1>Twilight visita a applejack</h1>
+                    <p>
+                      Al llegar a la granja, encontraron a Applejack pateando
+                       con destreza un robusto manzano, haciendo caer las frutas 
+                       maduras directamente en su canasta. La pony terrestre los
+                        recibió con su típica calidez norteña, ofreciéndoles el almuerzo 
+                        justo a tiempo. Mientras disfrutaban de las manzanas frescas, 
+                        Twilight compartió una profunda reflexión sobre la poderosa magia
+                         que las unía y lo mucho que extrañaba el lugar donde su destino 
+                         comenzó. Spike intervino con la boca llena, recordando que el Árbol 
+                         de la Amistad era el sitio ideal para reconectarse. Applejack se 
+                         limpió las manos con orgullo, asintió con entusiasmo y
+                       propuso reunir de inmediato al resto de las chicas para emprender ese importante viaje.
+                    </p>
+                  \
+                </div>
+            </article>
+        </section>
+
+        <section class="bookSpread spreadThree">
+            <article class="bookLeaf leftLeaf">
+                <div class="storyText">
+                    <h1>El largo viaje por el pantano</h1>
+                    <p>
+                       El viaje resultó ser una verdadera travesía cuando
+                        el grupo se adentró en un terreno pantanoso, cubierto por 
+                        una densa y misteriosa neblina. Rarity caminaba de puntitas,
+                         quejándose dramáticamente de cómo el lodo arruinaría la belleza 
+                         de sus cascos, aunque admitía el toque estético del paisaje.
+                          Por encima de ellas, Rainbow Dash volaba a baja altura disipando 
+                          la niebla con sus alas y asegurando que un poco de barro no asustaba
+                           a nadie. Fluttershy, un poco temerosa, avanzaba susurrándole palabras
+                            de agradecimiento a una pequeña rana que las guiaba por el camino seguro. 
+                            A pesar del cansancio y los obstáculos, 
+                       las risas y el apoyo mutuo convirtieron la larga caminata en una aventura sumamente amena.
+                    </p>
+                    
+                </div>
+            </article>
+
+            <article class="bookLeaf rightLeaf">
+                <img src="/imagenes/appleyrarity.jpg" alt="Princesa Celestia">
+            </article>
+        </section>
+
+        <section class="bookSpread spreadFour">
+            <article class="bookLeaf leftLeaf">
+                <img src="/imagenes2/arbol.png" alt="Twilight Sparkle">
+            </article>
+
+            <article class="bookLeaf rightLeaf">
+                <div class="storyText">
+                    <h1>El resplandor del Árbol de la Amistad</h1>
+                    <p>
+                       Finalmente, el grupo dejó atrás la maleza y entró en la
+                        mística cueva, quedando completamente boquiabiertas ante
+                         el espectáculo. Frente a ellas, el Árbol de la Amistad se
+                          erguía imponente, destellando con una luz cristalina y multicolor
+                          que disipaba cualquier rastro de oscuridad. Rarity suspiró conmovida
+                           al ver cómo los grabados de sus cutie marks brillaban en el tronco 
+                           como joyas perfectas. Rainbow Dash admitió sentir una energía electrizante
+                            que le recordaba lo poderosas que eran al estar juntas. Twilight contempló
+                             la estructura con reverencia, recordándoles a todas que ese árbol era el
+                        corazón de Equestria y la prueba viviente de que su lazo era inquebrantable.
+                    </p>
+                  
+                </div>
+            </article>
+        </section>
+        
+        <section class="bookSpread spreadFive">
+            <article class="bookLeaf leftLeaf">
+                <img src="/imagenes2/pelea.jpg" alt="Twilight Sparkle">
+            </article>
+
+            <article class="bookLeaf rightLeaf">
+                <div class="storyText">
+                    <h1>Las sombras regresan</h1>
+                    <p>
+                       De repente, la brillante atmósfera se congeló y una risa fría
+                        y despiadada resonó en las paredes de la cueva mientras las
+                         sombras cobraban vida. De la oscuridad emergió Nightmare Moon, con su imponente armadura oscura y una mirada cargada de malicia, burlándose de la "patética" amistad de las ponis. Twilight reaccionó al instante, ordenando a sus amigas ponerse en posición de batalla para proteger los valiosos elementos del árbol. Nightmare Moon lanzó violentos rayos oscuros intentando apoderarse del inmenso poder de los cristales para desatar su noche eterna. Sin embargo, las seis amigas se tomaron firmemente de los cascos, 
+                       activando la magia del árbol y respondiendo con un destello cegador que desintegró la maldad.
+                    </p>
+                  
+                </div>
+            </article>
+        </section>
+        
+        <section class="bookSpread spreadSix">
+            <article class="bookLeaf leftLeaf">
+                <img src="/imagenes2/celutwi.webp" alt="Twilight Sparkle">
+            </article>
+
+            <article class="bookLeaf rightLeaf">
+                <div class="storyText">
+                    <h1>El amanecer y la felicitación real</h1>
+                    <p>
+                      Con la derrota de la oscuridad, el cielo exterior se iluminó
+                       con un resplandor dorado y las mismísimas Princesas Celestia 
+                       y Luna descendieron con gracia majestuosa dentro de la cueva.
+                        Celestia felicitó con orgullo a Twilight y a sus amigas, elogiando 
+                        cómo su lazo indestructible había salvado el día una vez más. La 
+                        Princesa Luna, conmovida y aliviada, les agradeció profundamente 
+                        por mantener a raya los antiguos remanentes de su propio pasado oscuro.
+                         Twilight, abrazando fuertemente a sus cinco amigas y a Spike, sonrió 
+                         con lágrimas de felicidad en los ojos. Sabía perfectamente que, mientras 
+                         se tuvieran las unas a las otras, la magia de la amistad siempre ganaría 
+                         cualquier batalla.
+                    </p>
+                   
+                </div>
+            </article>
+        </section>
+  
+
+        <nav class="storyNav" aria-label="Controles del libro">
+            <a class="pageArrow prevPage controlOne" href="/cuerpo/front_page.html" aria-label="Volver a portada">
+                <img src="/imagenes/flecha.png" alt="">
+            </a>
+            <label class="pageArrow nextPage controlOne" for="spread2" aria-label="Siguiente pagina">
+                <img src="/imagenes/flecha.png" alt="">
+            </label>
+
+            <label class="pageArrow prevPage controlTwo" for="spread1" aria-label="Pagina anterior">
+                <img src="/imagenes/flecha.png" alt="">
+            </label>
+            <label class="pageArrow nextPage controlTwo" for="spread3" aria-label="Siguiente pagina">
+                <img src="/imagenes/flecha.png" alt="">
+            </label>
+
+            <label class="pageArrow prevPage controlThree" for="spread2" aria-label="Pagina anterior">
+                <img src="/imagenes/flecha.png" alt="">
+            </label>
+            <label class="pageArrow nextPage controlThree" for="spread4" aria-label="Siguiente pagina">
+                <img src="/imagenes/flecha.png" alt="">
+            </label>
+
+            <label class="pageArrow prevPage controlFour" for="spread3" aria-label="Pagina anterior">
+                <img src="/imagenes/flecha.png" alt="">
+            </label>
+            <label class="pageArrow nextPage controlFour" for="spread5" aria-label="Siguiente pagina">
+                <img src="/imagenes/flecha.png" alt="">
+            </label>
+
+            <label class="pageArrow prevPage controlFive" for="spread4" aria-label="Pagina anterior">
+                <img src="/imagenes/flecha.png" alt="">
+            </label>
+            <label class="pageArrow nextPage controlFive" for="spread6" aria-label="Siguiente pagina">
+                <img src="/imagenes/flecha.png" alt="">
+            </label>
+
+            <label class="pageArrow prevPage controlSix" for="spread5" aria-label="Pagina anterior">
+                <img src="/imagenes/flecha.png" alt="">
+            </label>
+            <a class="pageArrow nextPage controlSix" href="/cuerpo/back_page.html" aria-label="Trasportada">
+                <img src="/imagenes/flecha.png" alt="">
+            </a>
+            
+        </nav>
     </main>
 </body>
 </html>
