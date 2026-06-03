@@ -113,7 +113,7 @@ a {
     justify-content: center;
     overflow: hidden;
     perspective: 1900px;
-    background-image: url('/imagenes/fondoLibro.png');
+    background-image: url('../imagenes/fondoLibro.png');
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
